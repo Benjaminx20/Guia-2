@@ -1,0 +1,58 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Ejercicio1
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            int[] array1 = new int[8];
+            int[] array2 = new int[8];
+
+            Console.WriteLine("Ingrese 8 números enteros:");
+
+            for (int i = 0; i < array1.Length; i++)
+            {
+                bool esNumeroValido = false;
+                int numero = 0;
+
+                
+                while (!esNumeroValido)
+                {
+                    Console.Write($"Elemento {i + 1}: ");
+                    string entrada = Console.ReadLine();
+
+                    if (int.TryParse(entrada, out numero))
+                    {
+                        esNumeroValido = true;
+                    }
+                    else
+                    {
+                        Console.WriteLine(" Error: Debe ingresar un número entero válido.");
+                    }
+                }
+
+                array1[i] = numero;
+                array2[i] = numero * 3;
+            }
+
+            Console.WriteLine("\nArray1:");
+            foreach (int n in array1)
+            {
+                Console.Write(n + " ");
+            }
+
+            Console.WriteLine("\n\nArray2 (triple de Array1):");
+            foreach (int n in array2)
+            {
+                Console.Write(n + " ");
+
+                Console.ReadKey();
+            }
+        }
+    }
+}
