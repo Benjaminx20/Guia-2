@@ -1,0 +1,117 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Ejercicio_2
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        { 
+                List<string> lista = new List<string>();
+
+                Console.WriteLine("Ingrese 10 elementos para la lista:");
+                for (int i = 0; i < 10; i++)
+                {
+                    Console.Write($"Elemento {i + 1}: ");
+                    lista.Add(Console.ReadLine());
+                }
+
+                bool continuar = true;
+
+                while (continuar)
+                {
+                    Console.Clear();
+                    Console.WriteLine("===== MENÚ =====");
+                    Console.WriteLine("a) Agregar un nuevo elemento");
+                    Console.WriteLine("b) Actualizar un elemento");
+                    Console.WriteLine("c) Eliminar un elemento");
+                    Console.WriteLine("d) Mostrar alfabéticamente (A-Z)");
+                    Console.WriteLine("e) Mostrar alfabéticamente y en orden inverso (Z-A)");
+                    Console.WriteLine("f) Cerrar programa");
+                    Console.Write("\nSeleccione una opción: ");
+                    string opcion = Console.ReadLine();
+
+                    switch (opcion.ToLower())
+                    {
+                        case "a":
+                            Console.Write("Ingrese el nuevo elemento: ");
+                            string nuevo = Console.ReadLine();
+                            lista.Add(nuevo);
+                            Console.WriteLine("Elemento agregado correctamente.");
+                            break;
+
+                        case "b":
+                            Console.Write("Ingrese el elemento a actualizar: ");
+                            string viejo = Console.ReadLine();
+                            if (lista.Contains(viejo))
+                            {
+                                Console.Write("Ingrese el nuevo valor: ");
+                                string nuevoValor = Console.ReadLine();
+                                int indice = lista.IndexOf(viejo);
+                                lista[indice] = nuevoValor;
+                                Console.WriteLine("Elemento actualizado correctamente.");
+                            }
+                            else
+                            {
+                                Console.WriteLine("El elemento no existe en la lista.");
+                            }
+                            break;
+
+                        case "c":
+                            Console.Write("Ingrese el elemento a eliminar: ");
+                            string eliminar = Console.ReadLine();
+                            if (lista.Contains(eliminar))
+                            {
+                                lista.Remove(eliminar);
+                                Console.WriteLine("Elemento eliminado correctamente.");
+                            }
+                            else
+                            {
+                                Console.WriteLine("El elemento no existe en la lista.");
+                            }
+                            break;
+
+                        case "d":
+                            Console.WriteLine("\nLista en orden alfabético (A-Z):");
+                            foreach (string elem in lista.OrderBy(x => x))
+                            {
+                                Console.WriteLine(elem);
+                            }
+                            break;
+
+                        case "e":
+                            Console.WriteLine("\nLista en orden alfabético inverso (Z-A):");
+                            foreach (string elem in lista.OrderByDescending(x => x))
+                            {
+                                Console.WriteLine(elem);
+                            }
+                            break;
+
+                        case "f":
+                            continuar = false;
+                            Console.WriteLine("Saliendo del programa...");
+                            break;
+
+                        default:
+                            Console.WriteLine("⚠Opción no válida. Intente de nuevo.");
+                            break;
+                    }
+
+                    if (continuar)
+                    {
+                        Console.WriteLine("\nPresione una tecla para continuar...");
+                        Console.ReadKey();
+                    }
+                }
+            }
+        }
+
+
+
+    }
+
+
+
